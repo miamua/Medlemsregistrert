@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <form action="/memberlist" method="get">
+        <select name="sort">
+            <option value="default">Default</option>
+            <option value="Ascending">A-Ö</option>
+            <option value="Descending">Ö-A</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+
+    <ul>
+        <% members.forEach((member)=> { %>
+            <li>
+                <a href="/memberpage/<%= member._id %>">
+                    <%= member.name %>
+                </a>
+                <form action="/memberpage/<%= member._id %>/delete" method="post">
+                    <button>remove</button>
+                </form>
+
+            </li>
+            <% }); %>
+    </ul>
+
+</body>
+
+</html>
