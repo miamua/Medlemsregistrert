@@ -13,29 +13,38 @@
 </head>
 
 <body>
-    <form action="/memberlist" method="get">
-        <select name="sort">
-            <option value="default">Default</option>
-            <option value="Ascending">A-Ö</option>
-            <option value="Descending">Ö-A</option>
-        </select>
-        <button type="submit">Sort</button>
-    </form>
+    <%- include('header') %>
+        <form action="/memberlist" method="get">
+            <select name="sort" class="sort">
+                <option value="default">Default</option>
+                <option value="Ascending">A-Ö</option>
+                <option value="Descending">Ö-A</option>
+            </select>
+            <button type="submit">Sort</button>
+        </form>
 
-    <ul>
-        <% members.forEach((member)=> { %>
-            <li>
-                <a href="/memberpage/<%= member._id %>">
-                    <%= member.name %>
-                </a>
-                <form action="/memberpage/<%= member._id %>/delete" method="post">
-                    <button>remove</button>
-                </form>
+        <ul>
+            <% members.forEach((member)=> { %>
+                <div class="memberlist">
+                    <li>
+                        <a href="/memberpage/<%= member._id %>">
+                            <%= member.name %>
+                        </a>
+                        <div class="buttons">
+                            <form action="/memberpage/<%= member._id %>/delete" method="post">
+                            <button class="styledBtn">remove</button>
+                        </form>
+                        <form action="/memberpage/<%= member._id %>/edit" method="get">
+                            <button class="styledBtn">edit</button>
+                        </form>
+                        </div>
+                        
+                    </li>
+                </div>
 
-            </li>
-            <% }); %>
-    </ul>
-
+                <% }); %>
+        </ul>
+        <%- include('footer') %>
 </body>
 
 </html>

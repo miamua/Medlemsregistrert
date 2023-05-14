@@ -12,24 +12,30 @@
 </head>
 
 <body>
-    <h1>
+    <%- include('header') %>
+    <div class="memberInfo">
+       <h1>
         <%= name %>
     </h1>
-    <p>
+    
+    <h3>
         <%= email %>
+    </h3>
+    <p>
+        Telephone number: <%= phone %>
     </p>
     <p>
-        <%= phone %>
+        Member since: <%= date %>
     </p>
-    <p>
-        <%= date %>
-    </p>
-    <p>
+    <p> Message:
         <%= message %>
-    </p>
-
-
-
+    </p> 
+    <form action="/memberpage/<%=id %>/edit" method="get">
+        <button class="styledBtn">edit</button>
+    </form>
+    </div>
+    
+    <%- include('footer') %>
 </body>
 
 </html>

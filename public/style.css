@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+header {
+  padding: 25px;
+  text-align: center;
+  background: #06283d;
+  font-size: 20px;
+}
+header div {
+  display: flex;
+  justify-content: space-between;
+}
+header nav {
+  display: flex;
+  justify-content: space-around;
+}
+header nav a {
+  text-decoration: none;
+  color: #dff6ff;
+}
+header nav a:hover {
+  color: #47b5ff;
+  font-weight: bolder;
+}
+
+footer {
+  display: flex;
+  padding: 25px;
+  background: #06283d;
+  font-size: 20px;
+  justify-content: center;
+  color: #023047;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer nav a {
+  text-decoration: none;
+  color: #dff6ff;
+}
+footer nav a:hover {
+  color: #47b5ff;
+  font-weight: bolder;
+}
+
+.content {
+  width: 700px;
+  height: 200px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.content p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.content h1 {
+  font-size: 50px;
+}
+.content h2 {
+  margin-bottom: 10px;
+}
+
+
+.register-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    margin: 10px;
+    
+}
+
+.register-form h1 {
+    margin-bottom: 20px;
+}
+
+.register-form .register{
+    border: 2px solid #1363DF;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.sort{
+    margin: 20px 0px 10px 20px;
+}
+
+.memberlist{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.buttons{
+    display: flex;
+    gap: 5px;
+}
+
+.styledBtn{
+    padding: 4px;
+    font-size: 15px;
+}
+
+.memberInfo{
+    margin: 20px 0px 10px 20px;
+}
+
+.memberInfo p{
+    font-size: 20px;
+}
