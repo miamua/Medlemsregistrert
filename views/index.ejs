@@ -2,18 +2,23 @@
 <html lang="en">
 <%- include('header') %>
     <div class="content">
-        <h1>
+
+        <div class="clubInfo">
+            <i class="fa-solid fa-table-tennis-paddle-ball fa-7x logo"></i>
+            <div>
+              <h1>
             <%= title %>
         </h1>
         <h2>
-            <%= motto %>
-        </h2>
-        <p>Our badminton club is a welcoming and inclusive community for players of all levels. We offer regular
-            practices, matches, and social events for members to improve their skills, make new friends, and stay
-            active. Join us and discover the fun of playing badminton with a great group of people!</p>
-            <form action="/register" method="get">
-                <button type="submit">Join now!</button>
-            </form>
+            <%= motto %> 
+         </h2>     
+            </div>
+        </div>
+       
+        <p><%= description %> </p>
+        <form action="/register" method="get">
+            <button type="submit" class="button">Join now!</button>
+        </form>
         
     </div>
 

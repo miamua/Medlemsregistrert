@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>
-        memberpage
-    </title>
-</head>
-
-<body>
-    <%- include('header') %>
+<%- include('header') %>
     <div class="memberInfo">
-       <h1>
-        <%= name %>
-    </h1>
-    
-    <h3>
-        <%= email %>
-    </h3>
-    <p>
-        Telephone number: <%= phone %>
-    </p>
-    <p>
-        Member since: <%= date %>
-    </p>
-    <p> Message:
-        <%= message %>
-    </p> 
-    <form action="/memberpage/<%=id %>/edit" method="get">
-        <button class="styledBtn">edit</button>
-    </form>
-    </div>
-    
-    <%- include('footer') %>
-</body>
+        <h1>
+            <%= name %>
+        </h1>
 
-</html>
+        <h3>
+            <%= email %>
+        </h3>
+        <p>
+            <b>Telephone number:</b> <%= phone %>
+        </p>
+        <p>
+            <b>Member since:</b> <%= created_at %>
+        </p>
+        <p> <b>Message:</b>
+            <%= message %>
+        </p>
+        <div class="buttons">
+            <form action="/memberpage/<%= id %>/delete" method="post">
+                <button class="styledBtn">remove</button>
+            </form>
+            <form action="/memberpage/<%=id %>/edit" method="get">
+                <button class="styledBtn">edit</button>
+            </form>
+        </div>
+
+    </div>
+
+    <%- include('footer') %>

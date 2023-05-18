@@ -57,7 +57,7 @@ app.get('/memberpage/:id', async (req, res) => {
         name: member.name,
         email: member.email,
         phone: member.phone,
-        date: member.date,
+        created_at: member.created_at,
         message: member.message,
         id: member._id,
 
@@ -75,18 +75,25 @@ app.get('/memberlist/form', (req, res) => {
     res.render('form');
 });
 
-app.post('/memberlist/form', async (req, res) => {
-    await membersCollection.insertOne(req.body);
-    res.redirect('/memberlist');
+
+app.post("/memberlist/form", async (req, res) => {
+  const newUser = {
+    ...req.body,
+    created_at: new Date(),
+  };
+  await membersCollection.insertOne(newUser);
+  res.redirect("/memberlist");
 });
 
 app.get('/memberpage/:id/edit', async (req, res) => {
     const member = await membersCollection.findOne(({ _id: new ObjectId(req.params.id) }));
-    res.render('edit', { member });
+    res.render('edit', 
+    { member,
+    title: "Edit" });
 });
 
 app.post('/memberpage/:id/edit', async (req, res) => {
-    const {name, email, phone, date, message } = req.body;
+    const {name, email, phone, message } = req.body;
     const memberId = req.params.id;
     
   const result = await membersCollection.updateOne(
@@ -96,7 +103,6 @@ app.post('/memberpage/:id/edit', async (req, res) => {
         name: name,
         email: email,
         phone: phone,
-        date: date,
         message: message
       }
     }
@@ -116,8 +122,9 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
     res.render('index', {
-        title: 'Court Crushers',
-        motto: 'Smash the competition, dominate the court.',
+        title: 'Topspin Titans',
+        motto: `"Rise to the top with us"`,
+        description: 'Our club is a community of passionate table tennis players who love the strategic, fast-paced nature of the game. We focus on both improving our technique and building lasting friendships.'
     })
 });
 
