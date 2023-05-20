@@ -28,7 +28,7 @@
                 <div class="memberlist">
                     <li>
                         <a href="/memberpage/<%= member._id %>">
-                            <%= member.name %>
+                            <%= member.name.charAt(0).toUpperCase() + member.name.slice(1) %>
                         </a>
                         <div class="buttons">
                             <form action="/memberpage/<%= member._id %>/delete" method="post">

@@ -13,15 +13,15 @@ app.use(express.static('public'));
 const client = new MongoClient('mongodb://127.0.0.1:27017');
 await client.connect();
 
-//Create Database
-const db = client.db('testdb');
+//Create Database and collection
+const db = client.db('clubdb');
 const membersCollection = db.collection('members');
-//const testCollection = db.collection('members');
 
 app.get('/memberlist', async (req, res) => {
-    //members = await membersCollection.find({}).toArray();
+    await membersCollection.find({}).toArray();
     let selectedOption = req.query.sort;
     let members = "";
+    
     switch (selectedOption) {
         case 'Ascending':
             members = await membersCollection.find({}).sort({ name: 1 }).toArray();
@@ -77,8 +77,12 @@ app.get('/memberlist/form', (req, res) => {
 
 
 app.post("/memberlist/form", async (req, res) => {
+
   const newUser = {
-    ...req.body,
+    name: req.body.name.toLowerCase(),
+    email: req.body.email,
+    phone: req.body.phone,
+    message: req.body.message,
     created_at: new Date(),
   };
   await membersCollection.insertOne(newUser);
@@ -107,18 +111,16 @@ app.post('/memberpage/:id/edit', async (req, res) => {
       }
     }
   );
-
+  res.redirect(`/memberpage/${memberId}`);
+  /*
   if (result.modifiedCount === 1) {
     res.redirect(`/memberpage/${memberId}`);
   } else {
     res.status(500).send('Failed to update member');
   }
+  */
 });
 
-
-app.listen(port, () => {
-    console.log(`This server is running on port ${port}`)
-});
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -140,4 +142,6 @@ app.get('/contact', async (req, res) => {
     });
 });
 
-
+app.listen(port, () => {
+    console.log(`This server is running on port ${port}`)
+});
